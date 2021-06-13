@@ -1,0 +1,12 @@
+
+# docker-compose.ymlの書き方は下記を参照する
+# https://docs.docker.com/compose/compose-file/
+
+version: '3.7'
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - 8080:80
+
