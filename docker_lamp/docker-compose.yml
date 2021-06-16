@@ -5,6 +5,17 @@
 version: "3.8"
 
 services:
+  
+  web:
+    image: httpd:latest
+    restart: always
+    volumes:
+      - ./webapp:/webapp
+    ports:
+      - "20080:80"
+    depends_on:
+      - db
+  
   db:
     image: mariadb:latest
     restart: always
@@ -12,16 +23,10 @@ services:
       MYSQL_ROOT_PASSWORD: mysql_root_paswsword
       MYSQL_PORT: 3306
     ports:
-      - 3306:3306
+      - 23306:3306
     volumes:
       - ./mysql-data:/var/lib/mysql
-  web:
-    image: httpd:latest
-    restart: always
-    volumes:
-      - ./webapp:/webapp
-    ports:
-      - "8080:80"
-    depends_on:
-      - db
+  
+  
+
 
