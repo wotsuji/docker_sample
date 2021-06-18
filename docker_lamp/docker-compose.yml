@@ -12,7 +12,7 @@ services:
     volumes:
       - ./webapp:/webapp
     ports:
-      - "20080:80"
+      - "10080:80"
     depends_on:
       - db
   
@@ -20,13 +20,23 @@ services:
     image: mariadb:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: mysql_root_paswsword
-      MYSQL_PORT: 3306
+      - MYSQL_ROOT_PASSWORD: mysql_root_paswsword
+      - MYSQL_PORT: 3306
     ports:
-      - 23306:3306
+      - 13306:3306
     volumes:
       - ./mysql-data:/var/lib/mysql
   
-  
-
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      - PMA_ARBITRARY: 1
+      - PMA_HOST: db
+      - PMA_PORT: 3306
+      - PMA_USER: root
+      - PMA_PASSWORD: mysql_root_paswsword
+    ports:
+      - 10081:80
+    depends_on:
+      - db
 
