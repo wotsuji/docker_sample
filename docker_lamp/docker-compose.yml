@@ -1,11 +1,12 @@
 
 # docker-compose.ymlの書き方は下記を参照する
-# https://docs.docker.com/compose/compose-file/
+# https://docs.docker.jp/index.html
 
 version: "3.8"
 
 services:
   
+  # WEBサーバ
   web:
     image: httpd:latest
     restart: always
@@ -16,6 +17,7 @@ services:
     depends_on:
       - db
   
+  # DBサーバ
   db:
     image: mariadb:latest
     restart: always
@@ -27,6 +29,7 @@ services:
     volumes:
       - ./mysql-data:/var/lib/mysql
   
+  # PHPmyadminサーバ
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     environment:
