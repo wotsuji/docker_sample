@@ -23,8 +23,9 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD: mysql_root_paswsword
+      - MYSQL_USER: wordpress
+      - MYSQL_PASSWORD: wordpress
       - MYSQL_PORT: 3306
-    ports:
       - 13306:3306
     volumes:
       - ./mysql-data:/var/lib/mysql
@@ -40,7 +41,17 @@ services:
       - PMA_PASSWORD: mysql_root_paswsword
     ports:
       - 10081:80
+
+  # WordPress
+  wordpress:
+    image: wordpress:latest
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+    ports:
+      - "18000:80"
     depends_on:
       - db
-
 
