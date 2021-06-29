@@ -30,7 +30,7 @@ services:
     volumes:
       - ./mysql-data:/var/lib/mysql
   
-  # PHPmyadminサーバ
+  # PHPmyadmin
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     environment:
@@ -41,6 +41,8 @@ services:
       - PMA_PASSWORD: mysql_root_paswsword
     ports:
       - 10081:80
+    depends_on:
+      - db
 
   # WordPress
   wordpress:
