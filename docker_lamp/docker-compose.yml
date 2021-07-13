@@ -43,7 +43,7 @@ services:
       - 10081:80
     depends_on:
       - db
-
+  
   # WordPress
   wordpress:
     image: wordpress:latest
